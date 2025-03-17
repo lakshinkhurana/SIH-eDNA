@@ -1,0 +1,20 @@
+/* styles.css */
+.typing-container {
+    font-family: monospace;
+    white-space: pre-wrap; /* Wrap text properly */
+    max-height: 50vh; /* Set a maximum height (you can adjust this) */
+    overflow-y: auto; /* Enable vertical scrolling when text overflows */
+    padding: 10px;
+    
+  }
+  
+  #typing-effect::after {
+    content: '|';
+    animation: blink 0.8s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
