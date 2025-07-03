@@ -13,5 +13,6 @@
         "string": "cpp",
         "sstream": "c"
     },
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "python.analysis.typeCheckingMode": "off"
 }

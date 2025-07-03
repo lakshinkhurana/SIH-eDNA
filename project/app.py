@@ -1,21 +1,41 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import numpy as np
-import tensorflow as tf  # Use scikit-learn if your model is different
+import tensorflow as tf
+import requests
+import json
 
 app = FastAPI()
 
-# Load your trained model
-model = tf.keras.models.load_model(r"c:\vs-code-files\project\LSTM_model.keras")
-# Define request format
-class PredictionRequest(BaseModel):
-    features: list[float]  # Input should be a list of numbers
+# Load LSTM Model
+model = tf.keras.models.load_model(r"c:\Users\Lakshin Khurana\vs-code-files\project\LSTM_model.keras", compile=False)
 
-# API endpoint for prediction
-@app.post("/predict/")
-def predict(data: PredictionRequest):
-    input_data = np.array(data.features).reshape(1, -1)  # Reshape as needed
-    prediction = model.predict(input_data).tolist()  # Convert to list
+# Request Model for Prediction
+class PredictionRequest(BaseModel):
+    features: list[float]  # Expecting a list of float values
+
+@app.get("/predict")
+def predict(features: str):
+    # Convert query string into a list of floats
+    try:
+        feature_list = [float(x) for x in features.split(",")]
+    except ValueError:
+        return {"error": "Invalid input format"}
+
+    # Dummy prediction (replace with your model logic)
+    prediction = sum(feature_list)  # Example: Just summing up the numbers
+
     return {"prediction": prediction}
 
+
+@app.get("/")
+async def home():
+    return {"message": "Welcome to my API"}
+
+
+url = "http://127.0.0.1:8000/predict"
+params = {"features": "0.5,1.2,3.4"}  # Convert list to comma-separated string
+
+response = requests.get(url, params=params)
+print(response.json())
 
