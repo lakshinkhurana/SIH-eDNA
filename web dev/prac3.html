@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .child{
+      background-color: yellow;
+      &:hover{
+        background-color: red;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="border: 2px solid; width: 900px; height: 400px;display: flex; justify-content: center; align-items: center; gap: 10px;">
+    <div class="child" style="border: 2px solid red; width: 200px; height: 80px">1</div>
+    <div class="child" style="border: 2px solid red; width: 200px; height: 80px">2</div>
+    <div class="child" style="border: 2px solid red; width: 200px; height: 80px">3</div>
+    <div class="child" style="border: 2px solid red; width: 200px; height: 80px">4</div>
+  </div>
+</body>
+</html>
